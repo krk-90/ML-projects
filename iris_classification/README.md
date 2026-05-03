@@ -23,4 +23,4 @@ classification tasks and model evaluation.
 Install the dependencies before running the project:
 
 ```bash
-pip install numpy pandas scikit-learn 
+pip install numpy pandas scikit-learn
