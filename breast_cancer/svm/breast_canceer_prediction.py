@@ -9,7 +9,7 @@ from sklearn.preprocessing import StandardScaler
 class BreastCancerPrediction:
     def __init__(self):
         self.scaler = StandardScaler()
-        self.model = SVC(kernel='rbf', gamma='scale', random_state=42)
+        self.model = SVC(kernel='rbf', random_state=42)
 
     def load_data(self, file_path): 
         # Load the dataset  
@@ -100,6 +100,7 @@ def main():
                     concave_points_mean = float(input("Enter concave_points_mean: "))
                     radius_se   = float(input("Enter radius_se: "))
                     area_se      = float(input("Enter area_se: "))
+                    perimeter_se = float(input("Enter perimeter_se: "))
                     radius_worst      = float(input("Enter radius_worst: "))
                     perimeter_worst  = float(input("Enter perimeter_worst: "))
                     area_worst       = float(input("Enter area_worst: "))
@@ -107,13 +108,12 @@ def main():
                     concavity_worst    = float(input("Enter concavity_worst: "))
                     concave_points_worst    = float(input("Enter concave_points_worst: "))
 
-                    data_input = [radius_mean, perimeter_mean, area_mean, compactness_mean, concavity_mean, concave_points_mean, radius_se, area_se, radius_worst, perimeter_worst, area_worst, compactness_worst, concavity_worst, concave_points_worst]
-                    feature_values = data_input.split(',')
-                    predicted_class = prediction.predict_new(np.array(feature_values).reshape(1, -1))
+                    data_input = [radius_mean, perimeter_mean, area_mean, compactness_mean, concavity_mean, concave_points_mean, radius_se, area_se, perimeter_se, radius_worst, perimeter_worst, area_worst, compactness_worst, concavity_worst, concave_points_worst]
+                    predicted_class = prediction.predict_new(np.array(data_input).reshape(1, -1))
                     print(f"Predicted Class: {'Malignant' if predicted_class[0] == 1 else 'Benign'}")
 
                 except ValueError:
-                    print("Invalid input. Please enter numeric values separated by commas.")
+                    print("Invalid input. Please enter numeric values.")
 
     except Exception as e:
         print(f"An error occurred: {e}")    
